@@ -33,7 +33,7 @@ namespace server
             services.AddDbContext<OrderContext>(options => options.UseSqlite(Configuration.GetConnectionString("SalesDatabase"))); //"Data Source=MvcMovie.db")); //Configuration.GetConnectionString("SalesDatabase")));
             services.AddSwaggerGen(c =>
             {
-               c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+               c.SwaggerDoc("v1", new Info { Title = "My New API", Version = "v1" });
              });
         }
 
