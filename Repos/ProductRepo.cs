@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using server.Models;
 using server.Data;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace server.Repos
 {
@@ -22,27 +24,31 @@ namespace server.Repos
 
         public T Add(T entity)
         {
-            throw new NotImplementedException();
+            _orderContext.Set<T>().Add(entity);
+            _orderContext.SaveChanges();
+            return entity;
         }
 
         public void Delete(T entity)
         {
-            throw new NotImplementedException();
+            _orderContext.Set<T>().Remove(entity);
+            _orderContext.SaveChanges();
         }
 
         public T GetById(int id)
         {
-            throw new NotImplementedException();
+            return _orderContext.Set<T>().Find(id);
         }
 
         public IEnumerable<T> ListAll()
         {
-            throw new NotImplementedException();
+            return _orderContext.Set<T>().AsEnumerable();
         }
 
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+            _orderContext.Entry(entity).State = EntityState.Modified;
+            _orderContext.SaveChanges();
         }
     }
 }
