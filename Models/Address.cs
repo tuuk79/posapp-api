@@ -1,8 +1,7 @@
 ﻿namespace server.Models
 {
-    public class Address
+    public class Address : BaseEntity
     {
-        public int Id { get; set; }
         public string Street { get; set; }
         public string State { get; set; }
     }

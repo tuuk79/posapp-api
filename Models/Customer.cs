@@ -2,9 +2,8 @@
 
 namespace server.Models
 {
-    public class Customer
+    public class Customer : BaseEntity
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public Address Address { get; set; }
         public List<Order> Order { get; set; }

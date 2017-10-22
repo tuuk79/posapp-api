@@ -2,9 +2,8 @@
 
 namespace server.Models
 {
-    public class Order
+    public class Order : BaseEntity
     {
-        public int Id { get; set; }
         List<Product> Product { get; set; }
     }
 }
