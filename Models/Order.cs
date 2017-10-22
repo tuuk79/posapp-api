@@ -4,6 +4,6 @@ namespace server.Models
 {
     public class Order : BaseEntity
     {
-        List<Product> Product { get; set; }
+        public List<Product> Product { get; set; }
     }
 }

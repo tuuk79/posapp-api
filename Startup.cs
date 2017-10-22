@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Swagger;
+using server.Repos;
 
 namespace server
 {
@@ -29,6 +30,7 @@ namespace server
         {
             // Add framework services.
             services.AddMvc();
+            services.AddTransient<IProductRepo, ProductRepo>();
 
             services.AddDbContext<OrderContext>(options => options.UseSqlite(Configuration.GetConnectionString("SalesDatabase"))); //"Data Source=MvcMovie.db")); //Configuration.GetConnectionString("SalesDatabase")));
             services.AddSwaggerGen(c =>

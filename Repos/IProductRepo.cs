@@ -1,14 +1,15 @@
 ﻿using server.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace server.Repos
 {
-    interface IProductRepo<T> where T : BaseEntity
+    public interface IProductRepo 
     {
-        T GetById(int id);
-        IEnumerable<T> ListAll();
-        T Add(T entity);
-        void Update(T entity);
-        void Delete(T entity);
+        //Order GetById(int id);
+        //IEnumerable<Product> ListAll();
+        //Product Add(Product entity);
+        Task<bool> Update(Product entity);
+        //void Delete(Product id);
     }
 }

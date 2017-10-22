@@ -4,16 +4,18 @@ using server.Models;
 using server.Data;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace server.Repos
 {
-    public class ProductRepo<T> : IProductRepo<T> where T : BaseEntity
+    public class ProductRepo : IProductRepo
     {
         /// <summary>
         /// Product Repo Pattern
+        /// Look at github https://github.com/DanWahlin/Angular-ASPNET-Core-CustomersService/blob/master/Angular-ASPNET-Core-CustomersService/Apis/CustomersController.cs
         /// </summary>
         /// 
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="Product"></typeparam>
 
         private OrderContext _orderContext;
 
@@ -22,33 +24,39 @@ namespace server.Repos
             _orderContext = orderContext;
         }
 
-        public T Add(T entity)
-        {
-            _orderContext.Set<T>().Add(entity);
-            _orderContext.SaveChanges();
-            return entity;
-        }
+        //public Product Add(Product entity)
+        //{
+        //    _orderContext.Add(entity);
+        //    _orderContext.SaveChanges();
+        //    return entity;
+        //}
 
-        public void Delete(T entity)
-        {
-            _orderContext.Set<T>().Remove(entity);
-            _orderContext.SaveChanges();
-        }
+        //public void Delete(Product id)
+        //{
+        //    var product = _orderContext.Products.Find(id);
 
-        public T GetById(int id)
-        {
-            return _orderContext.Set<T>().Find(id);
-        }
+        //    _orderContext.Remove(product);
+        //    _orderContext.SaveChanges();
+        //}
 
-        public IEnumerable<T> ListAll()
-        {
-            return _orderContext.Set<T>().AsEnumerable();
-        }
+        //public Order GetById(int id)
+        //{
+        //    return _orderContext.Orders
+        //        .Include(c => c.Product)
+        //        .SingleOrDefault(c => c.Id == id);
+        //}
 
-        public void Update(T entity)
+        //public IEnumerable<Product> ListAll()
+        //{
+        //    return _orderContext.Products.AsEnumerable();
+        //}
+
+        public async Task<bool> Update(Product entity)
         {
+            _orderContext.Products.Attach(entity);
             _orderContext.Entry(entity).State = EntityState.Modified;
-            _orderContext.SaveChanges();
+            await _orderContext.SaveChangesAsync();
+            return true;
         }
     }
 }
