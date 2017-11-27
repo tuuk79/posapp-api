@@ -3,3 +3,4 @@ bin
 obj
 Properties
 .vs
+package-lock.json

@@ -17,9 +17,8 @@ namespace server.Controllers
             _context = context;
         }
 
-        // GET: api/VehicleLocations
         [HttpGet]
-        public IEnumerable<Product> GetOrder()
+        public IEnumerable<Product> GetProducts()
         {
             return _context.Products.ToList();
         }
